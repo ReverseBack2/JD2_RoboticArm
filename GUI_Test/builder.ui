@@ -2,6 +2,8 @@
 <interface>
   <object id="window" class="GtkWindow">
     <property name="title">Grid</property>
+    <property name="default-height">700</property>
+    <property name="default-width">900</property>
     <child>
       <object id="grid" class="GtkGrid">
         <child>
@@ -9,6 +11,14 @@
             <property name="label">Button 1</property>
             <layout>
               <property name="column">0</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <layout>
+              <property name="column">1</property>
               <property name="row">0</property>
             </layout>
           </object>
@@ -28,7 +38,7 @@
             <property name="digits">2</property>
             <property name="value">420.00</property>
             <layout>
-              <property name="column">1</property>
+              <property name="column">2</property>
               <property name="row">0</property>
             </layout>
           </object>

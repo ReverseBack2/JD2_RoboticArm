@@ -12,5 +12,7 @@ int main() {
 	// Error Check
 	if (serial_port < 0) {
 		printf("Error %i from open: %s\n", errno, strerror(errno));
+	}else{
+		printf("success: %i",serial_port);
 	}
 }
