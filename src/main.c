@@ -41,7 +41,7 @@ activate (GtkApplication *app,
   GObject *button = gtk_builder_get_object (builder, "button1");
   g_signal_connect (button, "clicked", G_CALLBACK (print_hello), NULL);
 
-  GObject *adj = gtk_builder_get_object (builder, "adjustment");
+  GObject *adj = gtk_builder_get_object (builder, "adjustment2b");
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), NULL);
 
   button = gtk_builder_get_object (builder, "quit");

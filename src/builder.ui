@@ -10,7 +10,9 @@
       	<!-- GCODE BUTTONS -->
         <child>
           <object id="button0" class="GtkButton">
-            <property name="label">Button 1</property>
+            <property name="label">G0</property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
               <property name="row">0</property>
@@ -19,7 +21,7 @@
         </child>
         <child>
           <object id="button1" class="GtkButton">
-            <property name="label">Button 1</property>
+            <property name="label">G1</property>
             <layout>
               <property name="column">0</property>
               <property name="row">1</property>
@@ -28,7 +30,7 @@
         </child>
         <child>
           <object id="button2" class="GtkButton">
-            <property name="label">Button 1</property>
+            <property name="label">G90</property>
             <layout>
               <property name="column">0</property>
               <property name="row">2</property>
@@ -37,7 +39,7 @@
         </child>
         <child>
           <object id="button3" class="GtkButton">
-            <property name="label">Button 1</property>
+            <property name="label">G91</property>
             <layout>
               <property name="column">0</property>
               <property name="row">3</property>
@@ -46,7 +48,7 @@
         </child>
         <child>
           <object id="button4" class="GtkButton">
-            <property name="label">Button 1</property>
+            <property name="label">G20</property>
             <layout>
               <property name="column">0</property>
               <property name="row">4</property>
@@ -55,19 +57,37 @@
         </child>
         <child>
           <object id="button5" class="GtkButton">
-            <property name="label">Button 1</property>
+            <property name="label">G21</property>
             <layout>
               <property name="column">0</property>
               <property name="row">5</property>
             </layout>
           </object>
         </child>
-        
-        <!-- Numeric inputs -->
         <child>
-          <object id="spinner0" class="GtkSpinButton">
+          <object id="button6" class="GtkButton">
+            <property name="label">M2</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">6</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="button7" class="GtkButton">
+            <property name="label">M6</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">7</property>
+            </layout>
+          </object>
+        </child>
+        
+        <!-- Numeric inputs 2x spin buttons per Gcode command-->
+        <child>
+          <object id="spinner0a" class="GtkSpinButton">
             <property name="adjustment">
-              <object id="adjustment" class="GtkAdjustment">
+              <object id="adjustment0a" class="GtkAdjustment">
                 <property name="value">420.0</property>
                 <property name="lower">69.0</property>
                 <property name="upper">9001.0</property>
@@ -76,11 +96,343 @@
                 <property name="page_size">0.0</property>
               </object>
             </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner0b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment0b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
             <property name="digits">2</property>
             <property name="value">420.00</property>
             <layout>
               <property name="column">2</property>
               <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner1a" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment1a" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">1</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner1b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment1b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">1</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner2a" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment2a" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">2</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner2b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment2b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">2</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner3a" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment3a" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">3</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner3b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment3b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">3</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner4a" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment4a" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">4</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner4b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment4b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">4</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner5a" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment5a" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">5</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner5b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment5b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">5</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner6a" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment6a" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">6</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner6b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment6b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">6</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner7a" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment7a" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">7</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="spinner7b" class="GtkSpinButton">
+            <property name="adjustment">
+              <object id="adjustment7b" class="GtkAdjustment">
+                <property name="value">420.0</property>
+                <property name="lower">69.0</property>
+                <property name="upper">9001.0</property>
+                <property name="step_increment">0.1</property>
+                <property name="page_increment">1.0</property>
+                <property name="page_size">0.0</property>
+              </object>
+            </property>
+            <property name="hexpand-set">TRUE</property>
+            <property name="hexpand">TRUE</property>
+            <property name="digits">2</property>
+            <property name="value">420.00</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">7</property>
             </layout>
           </object>
         </child>
@@ -91,7 +443,7 @@
             <property name="label">Quit</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">6</property>
+              <property name="row">8</property>
               <property name="column-span">3</property>
             </layout>
           </object>
