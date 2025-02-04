@@ -127,7 +127,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
   gtk_widget_set_visible (GTK_WIDGET (window), TRUE);
 
   GString* string2;
-  g_timeout_add(500, ReadSerial, string2);
+  g_timeout_add(200, ReadSerial, string2);
 
   /* We do not need the builder any more */
   g_object_unref (builder);
