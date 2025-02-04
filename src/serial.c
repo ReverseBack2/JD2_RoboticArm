@@ -61,16 +61,13 @@ void ser_msg(char* msg, int len, int ser_port) {
 
 void ser_read(char* input, int* len, int ser_port) {
 
-	// Buffer message so reading doesn't crash program
-	char temp [18] = {'*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','*','\n'};
-	ser_msg(temp, 18, ser_port);
-	clock_t start_time = clock();	
-    while (clock() < start_time + 100){;}
+	// Buffer message so reading doesn't crash program, then waiting 5000us to allows buffer message reply
+	char temp [2] = {'*','\n'};
+	ser_msg(temp, 2, ser_port);
+	clock_t start_time = clock();
+    while (clock() < start_time + 5000){;}
 
-	// printf("reading\n");
-	// Normally you wouldn't do this memset() call, but since we will just receive
-	// ASCII data for this example, we'll set everything to 0 so we can
-	// call printf() easily.
+	// initialize read_bif and num_bytes
 	char read_buf [256];
 	for (int i = 0; i < 256; ++i)
 	{
@@ -81,7 +78,6 @@ void ser_read(char* input, int* len, int ser_port) {
 	// Read bytes. The behaviour of read() (e.g. does it block?,
 	// how long does it block for?) depends on the configuration
 	// settings above, specifically VMIN and VTIME
-	int loops = 0;
 
 	while(1) {
 		num_bytes += read(ser_port, &read_buf[num_bytes], sizeof(read_buf));
@@ -89,8 +85,12 @@ void ser_read(char* input, int* len, int ser_port) {
 		  break;
 		}
 		if(num_bytes >= 224){printf("overflow\n");break;}
-		if(loops > 200){printf("escaped\n");break;}
-		loops += 1;
+	}
+
+	//Remove padding
+	for (int i = 0; i < 2; ++i)
+	{
+		read_buf[num_bytes-2-i] = '\0';
 	}
 
 	// n is the number of bytes read. n may be 0 if no bytes were received, and can also be -1 to signal an error.

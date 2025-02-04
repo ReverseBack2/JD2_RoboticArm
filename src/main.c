@@ -21,8 +21,8 @@ static void bt2(GtkWidget *widget, gpointer data) {
 
 static void gcode_2(GtkWidget *widget, gpointer data) {
   g_print("gcode2 called\n");
-  unsigned char msg[] = {'G','C','O','D','E',' ','f','u','n','c','t','i','o','n',' ','2','\n'};
-  ser_msg(msg, 17, serial_port);
+  unsigned char msg[] = {'b','\n'};
+  ser_msg(msg, 2, serial_port);
 }
 
 static void chang(GtkAdjustment *widget, gpointer data) {
@@ -31,10 +31,11 @@ static void chang(GtkAdjustment *widget, gpointer data) {
   num = value;
 }
 
-static void ReadSerial(GtkWidget *widget, gpointer data) {
-  g_print("Reading\n");
+gboolean ReadSerial(void* data) {
+  // g_print("Reading\n");
   ser_read(read_buf, len, serial_port);
-  g_print("Read\n"); 
+  // g_print("Read\n"); 
+  return TRUE;
 }
 
 static void quit_cb (GtkWindow *window) {
@@ -56,8 +57,8 @@ static void activate (GtkApplication *app, gpointer user_data) {
   GObject *button2 = gtk_builder_get_object (builder, "button2");
   g_signal_connect (button2, "clicked", G_CALLBACK (gcode_2), NULL);
 
-  GObject *button3 = gtk_builder_get_object (builder, "button3");
-  g_signal_connect (button3, "clicked", G_CALLBACK (ReadSerial), NULL);
+  // GObject *button3 = gtk_builder_get_object (builder, "button3");
+  // g_signal_connect (button3, "clicked", G_CALLBACK (ReadSerial), NULL);
 
   GObject *adj = gtk_builder_get_object (builder, "adjustment2b");
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), NULL);
@@ -67,8 +68,8 @@ static void activate (GtkApplication *app, gpointer user_data) {
 
   gtk_widget_set_visible (GTK_WIDGET (window), TRUE);
 
-  // GString* string;
-  // g_timeout_add(5000, ReadSerial, string);
+  GString* string;
+  g_timeout_add(500, ReadSerial, string);
 
   /* We do not need the builder any more */
   g_object_unref (builder);
