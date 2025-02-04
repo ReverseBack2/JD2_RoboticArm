@@ -16,26 +16,26 @@
 // [1] = 1 ==> Metric Mode
 
 // Rapid Travel
-void G0(int* dest, int* pos, int* config);
+void G0(int* dest, int* pos, int* config, int ser_port);
 
 // Straight Line
-void G1(int* dest, int* pos, int* config);
+void G1(int* dest, int* pos, int* config, int ser_port);
 
 // Absolute Mode
-void G90(int* config);
+void G90(int* config, int ser_port);
 
 // Relative Mode
-void G91(int* config);
+void G91(int* config, int ser_port);
 
 // Inch Mode (in)
-void G20(int* config);
+void G20(int* config, int ser_port);
 
 // Metric Mode (mm)
-void G21(int* config);
+void G21(int* config, int ser_port);
 
 // End
-void M2(int* pos);
+void M2(int* pos, int ser_port);
 
 // Tool Change (Pause)
-void M6();
+void M6(int ser_port);
 

@@ -2,11 +2,15 @@
 #include <glib/gstdio.h>
 #include <stdio.h>
 #include "serial.h"
+#include "gcode.h"
 
 static float num = 99;
 static int serial_port;
 static char read_buf [256];
 static int* len;
+static int destination [2];
+static int position [2];
+static int config [2];
 
 static void
 print_hello (GtkWidget *widget,
@@ -16,19 +20,21 @@ print_hello (GtkWidget *widget,
 }
 
 static void bt2(GtkWidget *widget, gpointer data) {
-  g_print("%d\n",&widget);
+  g_print("%d\n",config[0]);
 }
 
 static void gcode_2(GtkWidget *widget, gpointer data) {
   g_print("gcode2 called\n");
   unsigned char msg[] = {'b','\n'};
   ser_msg(msg, 2, serial_port);
+  config[0] = 3;
 }
 
 static void chang(GtkAdjustment *widget, gpointer data) {
   float value = gtk_adjustment_get_value(widget);
   g_print("%f\n",value);
   num = value;
+  G91(config, serial_port);
 }
 
 gboolean ReadSerial(void* data) {
@@ -52,7 +58,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
   gtk_window_set_application (GTK_WINDOW (window), app);
 
   GObject *button = gtk_builder_get_object (builder, "button1");
-  g_signal_connect (button, "clicked", G_CALLBACK (print_hello), NULL);
+  g_signal_connect (button, "clicked", G_CALLBACK (bt2), NULL);
 
   GObject *button2 = gtk_builder_get_object (builder, "button2");
   g_signal_connect (button2, "clicked", G_CALLBACK (gcode_2), NULL);
@@ -82,7 +88,12 @@ main (int argc, char *argv[])
   g_chdir (GTK_SRCDIR);
 #endif
 
-  
+  position[0] = 0;
+  position[1] = 0;
+  destination[0] = 0;
+  destination[1] = 0;
+  config[0] = 0;
+  config[1] = 0;
 
 
   serial_port = setup();
