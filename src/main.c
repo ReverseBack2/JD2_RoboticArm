@@ -27,20 +27,16 @@ static void gcode_2(GtkWidget *widget, gpointer data) {
   g_print("gcode2 called\n");
   unsigned char msg[] = {'b','\n'};
   ser_msg(msg, 2, serial_port);
-  config[0] = 3;
 }
 
 static void chang(GtkAdjustment *widget, gpointer data) {
   float value = gtk_adjustment_get_value(widget);
   g_print("%f\n",value);
   num = value;
-  G91(config, serial_port);
 }
 
 gboolean ReadSerial(void* data) {
-  // g_print("Reading\n");
   ser_read(read_buf, len, serial_port);
-  // g_print("Read\n"); 
   return TRUE;
 }
 
