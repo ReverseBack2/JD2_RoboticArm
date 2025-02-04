@@ -2,12 +2,20 @@
 
 // Rapid Travel
 void G0(int* dest, int* pos, int* config, int ser_port){
+	// Log command
+	unsigned char msg[] = {'a','\n'};
+  	ser_msg(msg, 2, ser_port);
 
+  	//Move Quickly
 }
 
 // Straight Line
 void G1(int* dest, int* pos, int* config, int ser_port){
+	// Log command
+	unsigned char msg[] = {'b','\n'};
+  	ser_msg(msg, 2, ser_port);
 
+  	//Move in Line
 }
 
 // Absolute Mode

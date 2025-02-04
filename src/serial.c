@@ -61,11 +61,11 @@ void ser_msg(char* msg, int len, int ser_port) {
 
 void ser_read(char* input, int* len, int ser_port) {
 
-	// Buffer message so reading doesn't crash program, then waiting 5000us to allows buffer message reply
+	// Buffer message so reading doesn't crash program, then waiting 2000us to allows buffer message reply
 	char temp [2] = {'*','\n'};
 	ser_msg(temp, 2, ser_port);
 	clock_t start_time = clock();
-    while (clock() < start_time + 5000){;}
+    while (clock() < start_time + 2000){;}
 
 	// initialize read_bif and num_bytes
 	char read_buf [256];

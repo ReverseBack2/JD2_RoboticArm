@@ -44,7 +44,7 @@ void loop() {
         break;
       default:
         //Gcode command 5
-        Serial.println(buf);
+        Serial.print(buf);
         break;
     }
 
