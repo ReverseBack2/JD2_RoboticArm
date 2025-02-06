@@ -88,12 +88,12 @@
           <object id="spinner0a" class="GtkSpinButton">
             <property name="adjustment">
               <object id="adjustment0a" class="GtkAdjustment">
-                <property name="value">420.0</property>
-                <property name="lower">69.0</property>
-                <property name="upper">9001.0</property>
-                <property name="step_increment">0.1</property>
-                <property name="page_increment">1.0</property>
-                <property name="page_size">0.0</property>
+                <property name="value">45</property>
+                <property name="lower">0</property>
+                <property name="upper">180</property>
+                <property name="step_increment">1</property>
+                <property name="page_increment">10</property>
+                <property name="page_size">00</property>
               </object>
             </property>
             <property name="hexpand-set">TRUE</property>
@@ -110,12 +110,12 @@
           <object id="spinner0b" class="GtkSpinButton">
             <property name="adjustment">
               <object id="adjustment0b" class="GtkAdjustment">
-                <property name="value">420.0</property>
-                <property name="lower">69.0</property>
-                <property name="upper">9001.0</property>
-                <property name="step_increment">0.1</property>
-                <property name="page_increment">1.0</property>
-                <property name="page_size">0.0</property>
+                <property name="value">45</property>
+                <property name="lower">0</property>
+                <property name="upper">180</property>
+                <property name="step_increment">1</property>
+                <property name="page_increment">10</property>
+                <property name="page_size">00</property>
               </object>
             </property>
             <property name="hexpand-set">TRUE</property>
@@ -132,10 +132,10 @@
           <object id="spinner1a" class="GtkSpinButton">
             <property name="adjustment">
               <object id="adjustment1a" class="GtkAdjustment">
-                <property name="value">420.0</property>
-                <property name="lower">69.0</property>
-                <property name="upper">9001.0</property>
-                <property name="step_increment">0.1</property>
+                <property name="value">0.0</property>
+                <property name="lower">0.0</property>
+                <property name="upper">180.0</property>
+                <property name="step_increment">1.0</property>
                 <property name="page_increment">1.0</property>
                 <property name="page_size">0.0</property>
               </object>
@@ -154,10 +154,10 @@
           <object id="spinner1b" class="GtkSpinButton">
             <property name="adjustment">
               <object id="adjustment1b" class="GtkAdjustment">
-                <property name="value">420.0</property>
-                <property name="lower">69.0</property>
-                <property name="upper">9001.0</property>
-                <property name="step_increment">0.1</property>
+                <property name="value">0.0</property>
+                <property name="lower">0.0</property>
+                <property name="upper">180.0</property>
+                <property name="step_increment">1.0</property>
                 <property name="page_increment">1.0</property>
                 <property name="page_size">0.0</property>
               </object>
@@ -172,7 +172,7 @@
             </layout>
           </object>
         </child>
-        <child>
+        <!-- <child>
           <object id="spinner2a" class="GtkSpinButton">
             <property name="adjustment">
               <object id="adjustment2a" class="GtkAdjustment">
@@ -435,7 +435,7 @@
               <property name="row">7</property>
             </layout>
           </object>
-        </child>
+        </child> -->
 
         <!-- Exit Button -->
         <child>

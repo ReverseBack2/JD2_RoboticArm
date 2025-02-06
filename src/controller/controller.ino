@@ -36,7 +36,7 @@ void setup() {
   }
 
   board1.begin();
-  board1.setPWMFreq(60);                  // Analog servos run at ~60 Hz updatesc
+  board1.setPWMFreq(20);                  // Analog servos run at ~60 Hz updatesc
 }
 
 
@@ -72,19 +72,21 @@ void loop() {
     switch (buf[0]) {
       case 'a':
         //Gcode command 1
-        Serial.println("motor 1 control");
         intBufA[0] = buf[1];
         intBufA[1] = buf[2];
         intBufA[2] = buf[3];
         angleA = atoi(intBufA);
+        Serial.print("motor 1 control: ");
+        Serial.println(angleA);
         break;
       case 'b':
         //Gcode command 2
-        Serial.println("motor 2 control");
         intBufB[0] = buf[1];
         intBufB[1] = buf[2];
         intBufB[2] = buf[3];
         angleB = atoi(intBufB);
+        Serial.print("motor 2 control: ");
+        Serial.println(angleB);
         break;
       case '*':
         //reading empty buffer

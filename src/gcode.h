@@ -39,3 +39,5 @@ void M2(int* pos, int ser_port);
 // Tool Change (Pause)
 void M6(int ser_port);
 
+// Helper Functions
+static void intToChar(int num, char* buf);

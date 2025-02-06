@@ -11,12 +11,9 @@ static int* len;
 static int destination [2];
 static int position [2];
 static int config [2];
+static int vars [4] = {45,45,45,45};
 static int numb [8] = {0,1,2,3,4,5,6,7};
 
-static void
-print_hello (GtkWidget *widget, gpointer data) {
-  g_print ("Hello World: %f\n",num);
-}
 
 static void bt2(GtkWidget *widget, gpointer data) {
   g_print("%d\n",config[0]);
@@ -27,10 +24,14 @@ static void Gcode(GtkWidget *widget, gpointer data) {
   switch (*dat) {
     case 0:
       g_print("G0\n");
+      destination[0] = vars[0];
+      destination[1] = vars[1];
       G0(destination, position, config, serial_port);
       break;
     case 1:
       g_print("G1\n");
+      destination[0] = vars[2];
+      destination[1] = vars[3];
       G1(destination, position, config, serial_port);
       break;
     case 2:
@@ -69,9 +70,10 @@ static void gcode_2(GtkWidget *widget, gpointer data) {
 }
 
 static void chang(GtkAdjustment *widget, gpointer data) {
-  float value = gtk_adjustment_get_value(widget);
-  g_print("%f\n",value);
-  num = value;
+  int* dat = data;
+  int value = ((int)gtk_adjustment_get_value(widget))%181;
+  // g_print("%d\n",value);
+  vars[*dat] = value;
 }
 
 gboolean ReadSerial(void* data) {
@@ -118,8 +120,23 @@ static void activate (GtkApplication *app, gpointer user_data) {
   g_signal_connect (button, "clicked", G_CALLBACK (Gcode), data7);
 
 
-  GObject *adj = gtk_builder_get_object (builder, "adjustment2b");
-  g_signal_connect (adj, "value-changed", G_CALLBACK(chang), NULL);
+  GObject *adj = gtk_builder_get_object (builder, "adjustment0a");
+  GtkAdjustment *adj2 = (GtkAdjustment*)adj;
+  gtk_adjustment_set_value(adj2, 45);
+  g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data0);
+  adj = gtk_builder_get_object (builder, "adjustment0b");
+  adj2 = (GtkAdjustment*)adj;
+  gtk_adjustment_set_value(adj2, 45);
+  g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data1);
+  adj = gtk_builder_get_object (builder, "adjustment1a");
+  adj2 = (GtkAdjustment*)adj;
+  gtk_adjustment_set_value(adj2, 45);
+  g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data2);
+  adj = gtk_builder_get_object (builder, "adjustment1b");
+  adj2 = (GtkAdjustment*)adj;
+  gtk_adjustment_set_value(adj2, 45);
+  g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data3);
+
 
   button = gtk_builder_get_object (builder, "quit");
   g_signal_connect_swapped (button, "clicked", G_CALLBACK (quit_cb), window);
