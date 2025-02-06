@@ -136,8 +136,11 @@ static void activate (GtkApplication *app, gpointer user_data) {
   adj2 = (GtkAdjustment*)adj;
   gtk_adjustment_set_value(adj2, 45);
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data3);
-  
+
   // Set default servo state
+  g_print("G0\n");
+  destination[0] = vars[0];
+  destination[1] = vars[1];
   G0(destination, position, config, serial_port);
 
 
@@ -168,7 +171,7 @@ main (int argc, char *argv[])
   config[1] = 0;
 
 
-  serial_port = setup();
+  serial_port = Serial_setup();
   unsigned char msg[] = {'T','e','s','t','\n'}; 
   ser_msg(msg, 5, serial_port);
   ser_read(read_buf, len, serial_port);

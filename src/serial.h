@@ -10,7 +10,7 @@
 #include <unistd.h> // write(), read(), close()
 
 
-int setup();
+int Serial_setup();
 
 void ser_msg(char* msg, int len, int ser_port);
 

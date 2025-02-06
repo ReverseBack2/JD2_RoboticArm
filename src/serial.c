@@ -1,6 +1,6 @@
 #include "serial.h"
 
-int setup() {
+int Serial_setup() {
 	// Open the serial port. Change device path as needed (currently set to an standard FTDI USB-UART cable type device)
   int serial_port = open("/dev/ttyUSB0", O_RDWR);
 
