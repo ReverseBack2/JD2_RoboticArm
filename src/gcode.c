@@ -3,8 +3,8 @@
 // Rapid Travel
 void G0(int* dest, int* pos, int* config, int ser_port){
 	// Log command
-	unsigned char msg[] = {'a','\n'};
-  	ser_msg(msg, 2, ser_port);
+	unsigned char msg[] = {'a','0','0','0','\n'};
+  	ser_msg(msg, 5, ser_port);
 
   	//Move Quickly
 }
@@ -12,8 +12,8 @@ void G0(int* dest, int* pos, int* config, int ser_port){
 // Straight Line
 void G1(int* dest, int* pos, int* config, int ser_port){
 	// Log command
-	unsigned char msg[] = {'b','\n'};
-  	ser_msg(msg, 2, ser_port);
+	unsigned char msg[] = {'a','1','8','0','\n'};
+  	ser_msg(msg, 5, ser_port);
 
   	//Move in Line
 }
