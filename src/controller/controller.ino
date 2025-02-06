@@ -36,7 +36,7 @@ void setup() {
   }
 
   board1.begin();
-  board1.setPWMFreq(20);                  // Analog servos run at ~60 Hz updatesc
+  board1.setPWMFreq(60);                  // Analog servos run at ~60 Hz updatesc
 }
 
 

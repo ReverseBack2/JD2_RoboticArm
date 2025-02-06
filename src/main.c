@@ -119,7 +119,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
   button = gtk_builder_get_object (builder, "button7");
   g_signal_connect (button, "clicked", G_CALLBACK (Gcode), data7);
 
-
+  // Numeric inputs
   GObject *adj = gtk_builder_get_object (builder, "adjustment0a");
   GtkAdjustment *adj2 = (GtkAdjustment*)adj;
   gtk_adjustment_set_value(adj2, 45);
@@ -136,6 +136,9 @@ static void activate (GtkApplication *app, gpointer user_data) {
   adj2 = (GtkAdjustment*)adj;
   gtk_adjustment_set_value(adj2, 45);
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data3);
+  
+  // Set default servo state
+  G0(destination, position, config, serial_port);
 
 
   button = gtk_builder_get_object (builder, "quit");
