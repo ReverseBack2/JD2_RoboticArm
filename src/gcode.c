@@ -1,6 +1,11 @@
 #include "gcode.h"
 #include <stdio.h>
 
+// Serial Setup PassThrough
+int GCS_setup(){
+	return Serial_setup();
+}
+
 // Rapid Travel
 void G0(int* dest, int* pos, int* config, int ser_port){
 	// Log command

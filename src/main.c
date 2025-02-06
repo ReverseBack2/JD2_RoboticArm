@@ -63,12 +63,6 @@ static void Gcode(GtkWidget *widget, gpointer data) {
   }
 }
 
-static void gcode_2(GtkWidget *widget, gpointer data) {
-  g_print("gcode2 called\n");
-  unsigned char msg[] = {'b','\n'};
-  ser_msg(msg, 2, serial_port);
-}
-
 static void chang(GtkAdjustment *widget, gpointer data) {
   int* dat = data;
   int value = ((int)gtk_adjustment_get_value(widget))%181;
@@ -171,7 +165,7 @@ main (int argc, char *argv[])
   config[1] = 0;
 
 
-  serial_port = Serial_setup();
+  serial_port = GCS_setup();
   unsigned char msg[] = {'T','e','s','t','\n'}; 
   ser_msg(msg, 5, serial_port);
   ser_read(read_buf, len, serial_port);

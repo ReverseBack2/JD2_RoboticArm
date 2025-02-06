@@ -15,6 +15,9 @@
 // [1] = 0 ==> Inch Mode
 // [1] = 1 ==> Metric Mode
 
+// Serial Setup PassThrough
+int GCS_setup();
+
 // Rapid Travel
 void G0(int* dest, int* pos, int* config, int ser_port);
 
