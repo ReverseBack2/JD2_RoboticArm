@@ -27,6 +27,9 @@ char intBufA [3];
 int angleA = 0;
 char intBufB [3];
 int angleB = 0;
+const int switchPin = 16;
+
+int switchState = 0;
 
 void setup() {
   Serial.begin(115200); // opens serial port, sets data rate to 115200 bps
@@ -35,8 +38,8 @@ void setup() {
     buf[i] = '\0';
   }
 
-  board1.begin();
-  board1.setPWMFreq(60);                  // Analog servos run at ~60 Hz updatesc
+  driverBoot();
+  pinMode(switchPin, INPUT);
 }
 
 
@@ -44,16 +47,29 @@ void setup() {
 void loop() {
 
 
-    board1.setPWM(0, 0, angleToPulse(angleA) );
+    // Independent of USB - testing code
+    switchState = digitalRead(switchPin);
+    if (switchState == HIGH) {
+      // turn LED on
+      angleA = 120;
+    } else {
+      // turn LED off
+      angleA = 300;
+    }
+
+    board1.setPWM(4, 0, angleToPulse(angleA) );
     board1.setPWM(5, 0, angleToPulse(angleB) );
 
-    // board1.setPWM(0, 0, angleToPulse(0) );
+    board1.setPWM(0, 0, angleToPulse(angleA) );
+    // board1.setPWM(4, 0, angleToPulse(0) );
+    // board1.setPWM(5, 0, angleToPulse(0) );
     // delay(800);
-    // board1.setPWM(0, 0, angleToPulse(180) );
+    // board1.setPWM(4, 0, angleToPulse(angleA) );
+    // board1.setPWM(5, 0, angleToPulse(angleA) );
     // delay(800);
     
    
-    // delay(100);
+    delay(10);
 
   // send data only when you receive data:
   if (Serial.available() > 0) {
@@ -88,6 +104,11 @@ void loop() {
         Serial.print("motor 2 control: ");
         Serial.println(angleB);
         break;
+      case 'e':
+        //Reset Driver
+        driverBoot();
+        Serial.println("resetting");
+        break;
       case '*':
         //reading empty buffer
         Serial.println("*");
@@ -113,3 +134,10 @@ int angleToPulse(int ang)                             //gets angle in degree and
      //Serial.print(" pulse: ");Serial.println(pulse);
      return pulse;
   }
+
+void driverBoot() {
+  board1.begin();
+  board1.setPWMFreq(45);                  // Analog servos run at ~50 Hz updatesc
+  angleA = 45;
+  angleB = 45;
+}

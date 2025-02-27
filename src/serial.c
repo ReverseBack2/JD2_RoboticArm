@@ -37,7 +37,7 @@ int Serial_setup() {
   tty.c_cc[VTIME] = 120;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
   tty.c_cc[VMIN] = 0;
 
-  // Set in/out baud rate to be 9600
+  // Set in/out baud rate to be 115200
   cfsetispeed(&tty, B115200);
   cfsetospeed(&tty, B115200);
 

@@ -10,7 +10,7 @@
       	<!-- GCODE BUTTONS -->
         <child>
           <object id="button0" class="GtkButton">
-            <property name="label">G0</property>
+            <property name="label">G0 (Rapid Travel)</property>
             <property name="hexpand-set">TRUE</property>
             <property name="hexpand">TRUE</property>
             <layout>
@@ -21,7 +21,7 @@
         </child>
         <child>
           <object id="button1" class="GtkButton">
-            <property name="label">G1</property>
+            <property name="label">G1 (Draw Line)</property>
             <layout>
               <property name="column">0</property>
               <property name="row">1</property>
@@ -30,7 +30,7 @@
         </child>
         <child>
           <object id="button2" class="GtkButton">
-            <property name="label">G90</property>
+            <property name="label">G90 (Absolute Mode)</property>
             <layout>
               <property name="column">0</property>
               <property name="row">2</property>
@@ -39,7 +39,7 @@
         </child>
         <child>
           <object id="button3" class="GtkButton">
-            <property name="label">G91</property>
+            <property name="label">G91 (Relative Mode)</property>
             <layout>
               <property name="column">0</property>
               <property name="row">3</property>
@@ -48,7 +48,7 @@
         </child>
         <child>
           <object id="button4" class="GtkButton">
-            <property name="label">G20</property>
+            <property name="label">G20 (Inch Mode)</property>
             <layout>
               <property name="column">0</property>
               <property name="row">4</property>
@@ -57,7 +57,7 @@
         </child>
         <child>
           <object id="button5" class="GtkButton">
-            <property name="label">G21</property>
+            <property name="label">G21 (Metric Mode)</property>
             <layout>
               <property name="column">0</property>
               <property name="row">5</property>
@@ -66,7 +66,7 @@
         </child>
         <child>
           <object id="button6" class="GtkButton">
-            <property name="label">M2</property>
+            <property name="label">M2 (End)</property>
             <layout>
               <property name="column">0</property>
               <property name="row">6</property>
@@ -75,7 +75,7 @@
         </child>
         <child>
           <object id="button7" class="GtkButton">
-            <property name="label">M6</property>
+            <property name="label">M6 (Tool Change/Pause)</property>
             <layout>
               <property name="column">0</property>
               <property name="row">7</property>
