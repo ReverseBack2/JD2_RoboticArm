@@ -11,7 +11,7 @@ static int* len;
 static float destination [2];
 static float position [2];
 static int config [2];
-static float vars [4] = {0,5.5,3,4};
+static float vars [4] = {0,5.5,0,0};
 static int numb [8] = {0,1,2,3,4,5,6,7};
 
 

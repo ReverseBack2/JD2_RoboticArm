@@ -65,11 +65,11 @@ void ser_read(char* input, int* len, int ser_port) {
 	char temp [2] = {'*','\n'};
 	ser_msg(temp, 2, ser_port);
 	clock_t start_time = clock();
-    while (clock() < start_time + 2000){;}
+  while (clock() < start_time + 2000){;}
 
 	// initialize read_bif and num_bytes
-	char read_buf [256];
-	for (int i = 0; i < 256; ++i)
+	char read_buf [1500];
+	for (int i = 0; i < 1024; ++i)
 	{
 		read_buf[i] = '\0';
 	}
@@ -84,7 +84,7 @@ void ser_read(char* input, int* len, int ser_port) {
 		if(read_buf[num_bytes-1] == '\n'){
 		  break;
 		}
-		if(num_bytes >= 224){printf("overflow\n");break;}
+		if(num_bytes >= 1000){printf("overflow\n");break;}
 	}
 
 	//Remove padding

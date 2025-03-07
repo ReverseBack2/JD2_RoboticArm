@@ -3,12 +3,16 @@
 #include "gcode.h"
 #include <time.h>
 
+
+//  gcc example.c serial.o gcode.o -o example.out -lm
+
+
 static float num = 99;
 static int serial_port;
 static char read_buf [256];
 static int* len;
-static int destination [2];
-static int position [2];
+static float destination [2];
+static float position [2];
 static int config [2];
 static int vars [4] = {45,45,45,45};
 static int numb [8] = {0,1,2,3,4,5,6,7};
@@ -31,12 +35,22 @@ int main(int argc, char const *argv[])
 	serial_port = GCS_setup();
 
 	while (1) {
-		for (int i = 0; i < 181; i+=5) {
-			destination[0] = i;
-			G0(destination, position, config, serial_port);
-
-			delay(200);
-		}
+		destination[0] = 0.0;
+		destination[1] = 4.0;
+		G1(destination, position, config, serial_port);
+		delay(1000);
+		destination[0] = 6.0;
+		destination[1] = 4.0;
+		G1(destination, position, config, serial_port);
+		delay(1000);
+		destination[0] = 6.0;
+		destination[1] = 11.0;
+		G1(destination, position, config, serial_port);
+		delay(1000);
+		destination[0] = 0.0;
+		destination[1] = 11.0;
+		G1(destination, position, config, serial_port);
+		delay(1000);
 	}
 	return 0;
 }

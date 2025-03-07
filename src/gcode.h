@@ -47,5 +47,7 @@ void M6(int ser_port);
 static void intToChar(int num, char* buf);
 static void posChange(float* dest, float* pos, int* config);
 static void angChange(float* dest, int* angle);
+static void move(float* dest, float* pos, int* config, int ser_port);
 static float clampf(float input, float low, float high);
 static int clampi(int input, int low, int high);
+static void delay(int us);
