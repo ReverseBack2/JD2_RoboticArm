@@ -2,7 +2,7 @@
 Adafruit_PWMServoDriver board1 = Adafruit_PWMServoDriver(0x40);       // called this way, it uses the default address 0x40
 
 #define SERVOMIN  125                                                 // this is the 'minimum' pulse length count (out of 4096) 125
-#define SERVOMAX  655                                                 // this is the 'maximum' pulse length count (out of 4096) 625
+#define SERVOMAX  522                                                 // this is the 'maximum' pulse length count (out of 4096) 625
 
 /*
 ESP32:
@@ -28,6 +28,7 @@ int angleA = 0;
 char intBufB [3];
 int angleB = 0;
 const int switchPin = 16;
+int active = 1;
 
 int switchState = 0;
 
@@ -39,7 +40,7 @@ void setup() {
   }
 
   driverBoot();
-  pinMode(switchPin, INPUT);
+  pinMode(switchPin, INPUT_PULLDOWN);
 }
 
 
@@ -47,20 +48,43 @@ void setup() {
 void loop() {
 
 
-    // Independent of USB - testing code
+    // // Independent of USB - testing code
+    // switchState = digitalRead(switchPin);
+    // if (switchState == HIGH) {
+    //   // turn LED on
+    //   angleA = 120;
+    // } else {
+    //   // turn LED off
+    //   angleA = 300;
+    // }
+
     switchState = digitalRead(switchPin);
     if (switchState == HIGH) {
       // turn LED on
-      angleA = 120;
+      active = 1;
     } else {
       // turn LED off
-      angleA = 300;
+      active = 0;
     }
 
-    board1.setPWM(4, 0, angleToPulse(angleA) );
-    board1.setPWM(5, 0, angleToPulse(angleB) );
+    // board1.setPWM(0, 0, angleToPulse(angleA) );
+    // board1.setPWM(1, 0, angleToPulse(angleA) );
+    // board1.setPWM(2, 0, angleToPulse(angleA) );
+    // board1.setPWM(3, 0, angleToPulse(angleA) );
+    
+    // board1.setPWM(4, 0, angleToPulse(angleB) );
+    // board1.setPWM(5, 0, angleToPulse(angleB) );
+    // board1.setPWM(6, 0, angleToPulse(angleB) );
+    // board1.setPWM(7, 0, angleToPulse(angleB) );
 
-    board1.setPWM(0, 0, angleToPulse(angleA) );
+    if(active == 1) {
+      board1.setPWM(4, 0, angleToPulse(angleA) );
+      board1.setPWM(5, 0, angleToPulse(angleB) );
+    }
+
+    // board1.setPWM(0, 0, angleToPulse(angleA) );
+
+
     // board1.setPWM(4, 0, angleToPulse(0) );
     // board1.setPWM(5, 0, angleToPulse(0) );
     // delay(800);
@@ -138,6 +162,6 @@ int angleToPulse(int ang)                             //gets angle in degree and
 void driverBoot() {
   board1.begin();
   board1.setPWMFreq(45);                  // Analog servos run at ~50 Hz updatesc
-  angleA = 45;
-  angleB = 45;
+  angleA = 90;
+  angleB = 90;
 }

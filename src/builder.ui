@@ -88,18 +88,18 @@
           <object id="spinner0a" class="GtkSpinButton">
             <property name="adjustment">
               <object id="adjustment0a" class="GtkAdjustment">
-                <property name="value">45</property>
+                <property name="value">0</property>
                 <property name="lower">0</property>
-                <property name="upper">180</property>
-                <property name="step_increment">1</property>
-                <property name="page_increment">10</property>
+                <property name="upper">8.5</property>
+                <property name="step_increment">0.01</property>
+                <property name="page_increment">0.10</property>
                 <property name="page_size">00</property>
               </object>
             </property>
             <property name="hexpand-set">TRUE</property>
             <property name="hexpand">TRUE</property>
             <property name="digits">2</property>
-            <property name="value">420.00</property>
+            <property name="value">0</property>
             <layout>
               <property name="column">1</property>
               <property name="row">0</property>
@@ -110,18 +110,18 @@
           <object id="spinner0b" class="GtkSpinButton">
             <property name="adjustment">
               <object id="adjustment0b" class="GtkAdjustment">
-                <property name="value">45</property>
+                <property name="value">5.5</property>
                 <property name="lower">0</property>
-                <property name="upper">180</property>
-                <property name="step_increment">1</property>
-                <property name="page_increment">10</property>
+                <property name="upper">11</property>
+                <property name="step_increment">0.01</property>
+                <property name="page_increment">0.10</property>
                 <property name="page_size">00</property>
               </object>
             </property>
             <property name="hexpand-set">TRUE</property>
             <property name="hexpand">TRUE</property>
             <property name="digits">2</property>
-            <property name="value">420.00</property>
+            <property name="value">5.5</property>
             <layout>
               <property name="column">2</property>
               <property name="row">0</property>

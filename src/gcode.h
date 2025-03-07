@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include "serial.h"
 
 // Dest is a two int array for the coordinates of the destination
@@ -19,10 +20,10 @@
 int GCS_setup();
 
 // Rapid Travel
-void G0(int* dest, int* pos, int* config, int ser_port);
+void G0(float* dest, float* pos, int* config, int ser_port);
 
 // Straight Line
-void G1(int* dest, int* pos, int* config, int ser_port);
+void G1(float* dest, float* pos, int* config, int ser_port);
 
 // Absolute Mode
 void G90(int* config, int ser_port);
@@ -37,10 +38,14 @@ void G20(int* config, int ser_port);
 void G21(int* config, int ser_port);
 
 // End
-void M2(int* pos, int ser_port);
+void M2(float* pos, int ser_port);
 
 // Tool Change (Pause)
 void M6(int ser_port);
 
 // Helper Functions
 static void intToChar(int num, char* buf);
+static void posChange(float* dest, float* pos, int* config);
+static void angChange(float* dest, int* angle);
+static float clampf(float input, float low, float high);
+static int clampi(int input, int low, int high);

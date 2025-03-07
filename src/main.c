@@ -8,10 +8,10 @@ static float num = 99;
 static int serial_port;
 static char read_buf [256];
 static int* len;
-static int destination [2];
-static int position [2];
+static float destination [2];
+static float position [2];
 static int config [2];
-static int vars [4] = {45,45,45,45};
+static float vars [4] = {0,5.5,3,4};
 static int numb [8] = {0,1,2,3,4,5,6,7};
 
 
@@ -65,7 +65,7 @@ static void Gcode(GtkWidget *widget, gpointer data) {
 
 static void chang(GtkAdjustment *widget, gpointer data) {
   int* dat = data;
-  int value = ((int)gtk_adjustment_get_value(widget))%181;
+  float value = ((float)gtk_adjustment_get_value(widget));
   // g_print("%d\n",value);
   vars[*dat] = value;
 }
