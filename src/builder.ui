@@ -3,7 +3,7 @@
 <interface>
 	<object id="window" class="GtkWindow">
     <property name="title">Grid</property>
-    <property name="default-height">700</property>
+    <property name="default-height">600</property>
     <property name="default-width">900</property>
     <child>
       <object id="grid" class="GtkGrid">
@@ -13,6 +13,8 @@
             <property name="label">G0 (Rapid Travel)</property>
             <property name="hexpand-set">TRUE</property>
             <property name="hexpand">TRUE</property>
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
               <property name="row">0</property>
@@ -22,6 +24,8 @@
         <child>
           <object id="button1" class="GtkButton">
             <property name="label">G1 (Draw Line)</property>
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
               <property name="row">1</property>
@@ -29,17 +33,22 @@
           </object>
         </child>
         <child>
-          <object id="button2" class="GtkButton">
-            <property name="label">G90 (Absolute Mode)</property>
+          <object id="Sep0" class="GtkSeparator">
+            <!-- <property name="label">Quit</property> -->
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
               <property name="row">2</property>
+              <property name="column-span">3</property>
             </layout>
           </object>
         </child>
         <child>
-          <object id="button3" class="GtkButton">
-            <property name="label">G91 (Relative Mode)</property>
+          <object id="button2" class="GtkButton">
+            <property name="label">G90 (Absolute Mode)</property>
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
               <property name="row">3</property>
@@ -47,8 +56,19 @@
           </object>
         </child>
         <child>
+          <object id="button3" class="GtkButton">
+            <property name="label">G91 (Relative Mode)</property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">3</property>
+            </layout>
+          </object>
+        </child>
+        <child>
           <object id="button4" class="GtkButton">
             <property name="label">G20 (Inch Mode)</property>
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
               <property name="row">4</property>
@@ -59,17 +79,19 @@
           <object id="button5" class="GtkButton">
             <property name="label">G21 (Metric Mode)</property>
             <layout>
-              <property name="column">0</property>
-              <property name="row">5</property>
+              <property name="column">1</property>
+              <property name="row">4</property>
             </layout>
           </object>
         </child>
         <child>
           <object id="button6" class="GtkButton">
             <property name="label">M2 (End)</property>
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">6</property>
+              <property name="row">5</property>
             </layout>
           </object>
         </child>
@@ -77,8 +99,29 @@
           <object id="button7" class="GtkButton">
             <property name="label">M6 (Tool Change/Pause)</property>
             <layout>
+              <property name="column">1</property>
+              <property name="row">5</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="button8" class="GtkButton">
+            <property name="label">Reset Driver</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">5</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object id="Sep1" class="GtkSeparator">
+            <!-- <property name="label">Quit</property> -->
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
+            <layout>
               <property name="column">0</property>
-              <property name="row">7</property>
+              <property name="row">6</property>
+              <property name="column-span">3</property>
             </layout>
           </object>
         </child>
@@ -441,9 +484,11 @@
         <child>
           <object id="quit" class="GtkButton">
             <property name="label">Quit</property>
+            <property name="vexpand-set">TRUE</property>
+            <property name="vexpand">TRUE</property>
             <layout>
               <property name="column">0</property>
-              <property name="row">8</property>
+              <property name="row">7</property>
               <property name="column-span">3</property>
             </layout>
           </object>

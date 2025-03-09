@@ -43,6 +43,9 @@ void M2(float* pos, int ser_port);
 // Tool Change (Pause)
 void M6(int ser_port);
 
+// Reset Driver
+void RD(int ser_port);
+
 // Helper Functions
 static void intToChar(int num, char* buf);
 static void posChange(float* dest, float* pos, int* config);

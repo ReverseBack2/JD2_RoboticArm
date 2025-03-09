@@ -35,22 +35,26 @@ int main(int argc, char const *argv[])
 	serial_port = GCS_setup();
 
 	while (1) {
-		destination[0] = 0.0;
-		destination[1] = 4.0;
+		destination[0] = 3.0;
+		destination[1] = 1.0;
+		G0(destination, position, config, serial_port);
+		delay(3000);
+		destination[0] = 8.0;
+		destination[1] = 10.0;
 		G1(destination, position, config, serial_port);
 		delay(1000);
-		destination[0] = 6.0;
-		destination[1] = 4.0;
-		G1(destination, position, config, serial_port);
+		destination[0] = 2.0;
+		destination[1] = 10.0;
+		G0(destination, position, config, serial_port);
 		delay(1000);
-		destination[0] = 6.0;
-		destination[1] = 11.0;
-		G1(destination, position, config, serial_port);
+		destination[0] = 2.0;
+		destination[1] = 1.0;
+		G0(destination, position, config, serial_port);
 		delay(1000);
-		destination[0] = 0.0;
-		destination[1] = 11.0;
-		G1(destination, position, config, serial_port);
-		delay(1000);
+		// destination[0] = 0.0;
+		// destination[1] = 11.0;
+		// G1(destination, position, config, serial_port);
+		// delay(1000);
 	}
 	return 0;
 }

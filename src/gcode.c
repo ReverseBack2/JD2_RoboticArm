@@ -1,4 +1,5 @@
 #include "gcode.h"
+#include <math.h>
 // #include
 
 #define STEP_COUNT 100
@@ -6,9 +7,9 @@
 
 #define A 8.0625
 #define B 6.125
-#define THETA_SCALE 1.0
+#define THETA_SCALE 1.005
 #define THETA_OFFEST 0
-#define PHI_SCALE 1.0
+#define PHI_SCALE 1.02
 #define PHI_OFFSET 135
 #define PI 3.1415926535 
 
@@ -77,7 +78,7 @@ void G91(int* config, int ser_port){
 void G20(int* config, int ser_port){
 	config[1] = 0;
 	// Log command
-	unsigned char msg[] = {'i','\n'};
+	unsigned char msg[] = {'e','\n'};
   	ser_msg(msg, 2, ser_port);
 }
 
@@ -85,17 +86,21 @@ void G20(int* config, int ser_port){
 void G21(int* config, int ser_port){
 	config[1] = 1;
 	// Log command
-	unsigned char msg[] = {'m','\n'};
+	unsigned char msg[] = {'f','\n'};
   	ser_msg(msg, 2, ser_port);
 }
 
 // End
 void M2(float* pos, int ser_port){
 	// Log command
-	unsigned char msg[] = {'e','\n'};
+	unsigned char msg[] = {'g','\n'};
   	ser_msg(msg, 2, ser_port);
 
   	// Move to End
+  	float dest [2] = {1.0,2.0};
+  	int config [2] = {0,0};
+
+  	G0(dest, pos, config, ser_port);
 
 }
 
@@ -103,6 +108,15 @@ void M2(float* pos, int ser_port){
 void M6(int ser_port){
 	// Log command
 	unsigned char msg[] = {'h','\n'};
+  	ser_msg(msg, 2, ser_port);
+
+  	// Pause
+}
+
+// Reset Driver
+void RD(int ser_port){
+	// Log command
+	unsigned char msg[] = {'z','\n'};
   	ser_msg(msg, 2, ser_port);
 
   	// Pause
@@ -193,8 +207,9 @@ static void angChange(float *dest, int *angle) {
 	theta = theta * 180/PI;
 
 
-	theta = theta * THETA_SCALE + THETA_OFFEST;
-	phi = phi * PHI_SCALE + PHI_OFFSET;
+	theta = (theta + THETA_OFFEST) * THETA_SCALE;
+	phi = (phi + PHI_OFFSET) * PHI_SCALE;
+	phi = powf(phi, 0.985);
 
 	printf("phi: %f, theta: %f\n",phi,theta);
 

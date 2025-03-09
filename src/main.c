@@ -11,8 +11,8 @@ static int* len;
 static float destination [2];
 static float position [2];
 static int config [2];
-static float vars [4] = {0,5.5,0,0};
-static int numb [8] = {0,1,2,3,4,5,6,7};
+static float vars [4] = {2,2,0,0};
+static int numb [9] = {0,1,2,3,4,5,6,7,8};
 
 
 static void bt2(GtkWidget *widget, gpointer data) {
@@ -58,6 +58,10 @@ static void Gcode(GtkWidget *widget, gpointer data) {
       g_print("M6\n");
       M6(serial_port);
       break;
+    case 8:
+      g_print("Reset Driver\n");
+      RD(serial_port);
+      break;
     default:
       g_print("not one\n");
   }
@@ -96,6 +100,7 @@ static void activate (GtkApplication *app, gpointer user_data) {
   gpointer data5 = &(numb[5]);
   gpointer data6 = &(numb[6]);
   gpointer data7 = &(numb[7]);
+  gpointer data8 = &(numb[8]);
   GObject *button = gtk_builder_get_object (builder, "button0");
   g_signal_connect (button, "clicked", G_CALLBACK (Gcode), data0);
   button = gtk_builder_get_object (builder, "button1");
@@ -112,23 +117,25 @@ static void activate (GtkApplication *app, gpointer user_data) {
   g_signal_connect (button, "clicked", G_CALLBACK (Gcode), data6);
   button = gtk_builder_get_object (builder, "button7");
   g_signal_connect (button, "clicked", G_CALLBACK (Gcode), data7);
+  button = gtk_builder_get_object (builder, "button8");
+  g_signal_connect (button, "clicked", G_CALLBACK (Gcode), data8);
 
   // Numeric inputs
   GObject *adj = gtk_builder_get_object (builder, "adjustment0a");
   GtkAdjustment *adj2 = (GtkAdjustment*)adj;
-  gtk_adjustment_set_value(adj2, 45);
+  gtk_adjustment_set_value(adj2, 2.0);
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data0);
   adj = gtk_builder_get_object (builder, "adjustment0b");
   adj2 = (GtkAdjustment*)adj;
-  gtk_adjustment_set_value(adj2, 45);
+  gtk_adjustment_set_value(adj2, 2.0);
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data1);
   adj = gtk_builder_get_object (builder, "adjustment1a");
   adj2 = (GtkAdjustment*)adj;
-  gtk_adjustment_set_value(adj2, 45);
+  gtk_adjustment_set_value(adj2, 0.0);
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data2);
   adj = gtk_builder_get_object (builder, "adjustment1b");
   adj2 = (GtkAdjustment*)adj;
-  gtk_adjustment_set_value(adj2, 45);
+  gtk_adjustment_set_value(adj2, 0.0);
   g_signal_connect (adj, "value-changed", G_CALLBACK(chang), data3);
 
   // Set default servo state
@@ -166,9 +173,9 @@ main (int argc, char *argv[])
 
 
   serial_port = GCS_setup();
-  unsigned char msg[] = {'T','e','s','t','\n'}; 
-  ser_msg(msg, 5, serial_port);
-  ser_read(read_buf, len, serial_port);
+  // unsigned char msg[] = {'T','e','s','t','\n'}; 
+  // ser_msg(msg, 5, serial_port);
+  // ser_read(read_buf, len, serial_port);
 
   GtkApplication *app = gtk_application_new ("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);

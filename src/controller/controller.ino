@@ -128,7 +128,7 @@ void loop() {
         Serial.print("motor 2 control: ");
         Serial.println(angleB);
         break;
-      case 'e':
+      case 'z':
         //Reset Driver
         driverBoot();
         Serial.println("resetting");
