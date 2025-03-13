@@ -13,6 +13,7 @@ static float position [2];
 static int config [2];
 static float vars [4] = {2,2,0,0};
 static int numb [9] = {0,1,2,3,4,5,6,7,8};
+static GtkLabel* mode1;
 
 
 static void bt2(GtkWidget *widget, gpointer data) {
@@ -173,9 +174,10 @@ main (int argc, char *argv[])
 
 
   serial_port = GCS_setup();
-  // unsigned char msg[] = {'T','e','s','t','\n'}; 
-  // ser_msg(msg, 5, serial_port);
-  // ser_read(read_buf, len, serial_port);
+
+  unsigned char msg[] = {'T','e','s','t','\n'}; 
+  ser_msg(msg, 5, serial_port);
+  ser_read(read_buf, len, serial_port);
 
   GtkApplication *app = gtk_application_new ("org.gtk.example", G_APPLICATION_DEFAULT_FLAGS);
   g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
